@@ -21,6 +21,10 @@
       "error"
     ],
     "no-plusplus": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "no-return-assign": "off",
+    "no-unused-expressions": "off",
+    "import/no-unresolved": "off",
+    "one-var": "off"
   }
 }
