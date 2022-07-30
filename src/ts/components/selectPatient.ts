@@ -1,5 +1,4 @@
 import addPatient from '../services/addPatient.js';
-import getPatients from '../services/getPatients.js';
 import { createEl } from '../utils/domFunctions.js';
 import { PacientDBI } from '../utils/interfaces.js';
 

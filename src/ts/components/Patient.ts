@@ -1,6 +1,7 @@
 import deletePatient from '../services/deletePatient.js';
 import { createEl } from '../utils/domFunctions.js';
 import { PacientDBI } from '../utils/interfaces.js';
+import newListOfAppointments from './listAppointments.js';
 
 const newPatientComponent = ({
   id,
@@ -51,12 +52,25 @@ const newPatientComponent = ({
     }
   });
 
+  const viewBtn = createEl({
+    tag: 'button',
+    text: `Appointments: ${numberOfAppointments}`,
+    attributes: {
+      id: `viewBtn-${id}`,
+      class: 'btn viewBtn'
+    }
+  });
+
+  const datesView = newListOfAppointments(id, datesAppointments);
+
+  viewBtn.addEventListener('click', () => datesView.showModal());
+
   deleteBtn.addEventListener('click', (e) => {
     e.preventDefault();
     deletePatient(id).then(() => ptDiv.remove());
   });
 
-  ptDiv.append(ptName, dni, p, deleteBtn);
+  ptDiv.append(ptName, dni, p, deleteBtn, viewBtn, datesView);
 
   return ptDiv;
 };

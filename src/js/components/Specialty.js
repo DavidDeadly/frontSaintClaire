@@ -67,7 +67,12 @@ const newSpecialtyComponent = async ({ id, name, physicianInCharge, patients }) 
     btnsDiv.append(editBtn, addPacientBtn);
     deleteBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        deleteSpecialty(id).then(() => spDiv.remove());
+        deleteSpecialty(id)
+            .then(() => spDiv.remove())
+            .catch((err) => {
+            alert(err);
+            console.error(err);
+        });
     });
     spDiv.append(spName, picName, btnsDiv, deleteBtn, modalEdit);
     return spDiv;

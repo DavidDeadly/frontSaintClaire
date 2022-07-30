@@ -1,5 +1,6 @@
 import deletePatient from '../services/deletePatient.js';
 import { createEl } from '../utils/domFunctions.js';
+import newListOfAppointments from './listAppointments.js';
 const newPatientComponent = ({ id, name, age, identificationNumber, datesAppointments, numberOfAppointments }) => {
     const ptDiv = createEl({
         tag: 'div',
@@ -37,11 +38,21 @@ const newPatientComponent = ({ id, name, age, identificationNumber, datesAppoint
             class: 'del-btn'
         }
     });
+    const viewBtn = createEl({
+        tag: 'button',
+        text: `Appointments: ${numberOfAppointments}`,
+        attributes: {
+            id: `viewBtn-${id}`,
+            class: 'btn viewBtn'
+        }
+    });
+    const datesView = newListOfAppointments(id, datesAppointments);
+    viewBtn.addEventListener('click', () => datesView.showModal());
     deleteBtn.addEventListener('click', (e) => {
         e.preventDefault();
         deletePatient(id).then(() => ptDiv.remove());
     });
-    ptDiv.append(ptName, dni, p, deleteBtn);
+    ptDiv.append(ptName, dni, p, deleteBtn, viewBtn, datesView);
     return ptDiv;
 };
 export default newPatientComponent;
