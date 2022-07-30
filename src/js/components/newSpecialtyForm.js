@@ -1,7 +1,7 @@
 import createSpecialty from '../services/createSpecialty.js';
 import editSpecialty from '../services/editSpecialty.js';
 import { $, createEl } from '../utils/domFunctions.js';
-const newEditForm = (id) => {
+const newSpecialtyForm = (id) => {
     const isNew = !id;
     const modal = createEl({
         tag: 'dialog',
@@ -80,4 +80,4 @@ const newEditForm = (id) => {
     modal.append(title, editForm);
     return modal;
 };
-export default newEditForm;
+export default newSpecialtyForm;

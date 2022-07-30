@@ -1,27 +1,30 @@
+import createSpecialty from '../services/createSpecialty.js';
 import editSpecialty from '../services/editSpecialty.js';
 import { $, createEl } from '../utils/domFunctions.js';
 
-const newEditForm = (id: number) => {
+const newSpecialtyForm = (id: number) => {
+  const isNew = !id;
+
   const modal = createEl({
     tag: 'dialog',
     attributes: {
-      id: `modal-edit-${id}`,
+      id: !isNew ? `modal-edit-${id}` : `modal-new`,
       class: 'modal'
     }
   }) as HTMLDialogElement;
 
   const title = createEl({
     tag: 'h1',
-    text: 'New Specialty Values',
+    text: !isNew ? 'New Specialty Values' : 'Specialty Values',
     attributes: {
-      id: 'modal-edit-title'
+      id: !isNew ? 'modal-edit-title' : 'modal-new-title'
     }
   });
 
   const editForm = createEl({
     tag: 'form',
     attributes: {
-      id: `edit-form-${id}`,
+      id: !isNew ? `edit-form-${id}` : `new-form`,
       method: 'dialog',
       class: 'form-edit'
     }
@@ -45,9 +48,9 @@ const newEditForm = (id: number) => {
 
   const submitBtn = createEl({
     tag: 'button',
-    text: 'Save',
+    text: !isNew ? 'Save' : 'Create',
     attributes: {
-      id: 'sub-edit-btn',
+      id: !isNew ? 'sub-edit-btn' : 'sub-new-btn',
       type: 'submit',
       class: 'btn'
     }
@@ -68,7 +71,7 @@ const newEditForm = (id: number) => {
       spInput.classList.add('border-red-500');
     } else spInput.classList.remove('border-red-500');
 
-    editSpecialty(id, name, picName)
+    (isNew ? createSpecialty(name, picName) : editSpecialty(id, name, picName))
       .then(() => {
         ($('#sp-btn') as HTMLElement).click();
         inputName.value = '';
@@ -80,6 +83,7 @@ const newEditForm = (id: number) => {
       });
 
     modal.close();
+    isNew && modal.remove();
   });
 
   editForm.append(inputName, spInput, submitBtn);
@@ -89,4 +93,4 @@ const newEditForm = (id: number) => {
   return modal;
 };
 
-export default newEditForm;
+export default newSpecialtyForm;

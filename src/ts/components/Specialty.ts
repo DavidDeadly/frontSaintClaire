@@ -1,7 +1,7 @@
 import deleteSpecialty from '../services/deleteSpecialty.js';
 import { createEl } from '../utils/domFunctions.js';
 import { SpecialtyDBI } from '../utils/interfaces.js';
-import newEditForm from './editForm.js';
+import newEditForm from './newSpecialtyForm.js';
 import newModalSelectPatient from './selectPatient.js';
 import getPatients from '../services/getPatients.js';
 import newListPatients from './listPatients.js';
