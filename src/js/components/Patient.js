@@ -33,7 +33,8 @@ const newPatientComponent = ({ id, name, age, identificationNumber, datesAppoint
         tag: 'button',
         text: 'x',
         attributes: {
-            id: `pt-del-btn-${id}`
+            id: `pt-del-btn-${id}`,
+            class: 'del-btn'
         }
     });
     deleteBtn.addEventListener('click', (e) => {

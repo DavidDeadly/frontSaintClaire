@@ -8,10 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import checkResponseCode from '../utils/checkCode.js';
-const deleteSpecialty = (id) => fetch(`http://localhost:8080/specialty/${id}`, { method: 'DELETE' })
-    .then((r) => __awaiter(void 0, void 0, void 0, function* () { return checkResponseCode(r); }))
-    .catch((err) => {
-    alert(err);
-    console.error(err);
-});
-export default deleteSpecialty;
+const editSpecialty = (id, name, pic) => {
+    const params = { name, pic };
+    const url = new URL(`http://localhost:8080/specialty/update/${id}`);
+    Object.entries(params).forEach(([key, value]) => {
+        if (value.length)
+            url.searchParams.append(key, value);
+    });
+    return fetch(url, { method: 'PUT' }).then((r) => __awaiter(void 0, void 0, void 0, function* () { return checkResponseCode(r); }));
+};
+export default editSpecialty;

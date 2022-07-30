@@ -1,10 +1,8 @@
+import checkResponseCode from '../utils/checkCode.js';
+
 const deleteSpecialty = (id: number) =>
   fetch(`http://localhost:8080/specialty/${id}`, { method: 'DELETE' })
-    .then(async (r) => {
-      const json = await r.json();
-      if (r.status >= 400) throw new Error(json.msg);
-      return json;
-    })
+    .then(async (r) => checkResponseCode(r))
     .catch((err) => {
       alert(err);
       console.error(err);

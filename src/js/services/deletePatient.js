@@ -7,13 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import checkResponseCode from '../utils/checkCode.js';
 const deletePatient = (id) => fetch(`http://localhost:8080/patient/${id}`, { method: 'DELETE' })
-    .then((r) => __awaiter(void 0, void 0, void 0, function* () {
-    const json = yield r.json();
-    if (r.status >= 400)
-        throw new Error(json.msg);
-    return json;
-}))
+    .then((r) => __awaiter(void 0, void 0, void 0, function* () { return checkResponseCode(r); }))
     .catch((err) => {
     alert(err);
     console.error(err);

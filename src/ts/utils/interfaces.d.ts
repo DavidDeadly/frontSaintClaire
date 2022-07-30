@@ -1,10 +1,17 @@
+export interface attributesI {
+  id: string;
+  class?: string;
+  type?: string;
+  method?: string;
+  placeholder?: string;
+  for?: string;
+  style?: string;
+}
+
 export interface domElI {
   tag: string;
   text?: string;
-  attributes: {
-    id: string;
-    class?: string;
-  };
+  attributes: attributesI;
 }
 
 export interface PacientI {
