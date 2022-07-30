@@ -8,6 +8,7 @@ export interface attributesI {
   value?: string;
   disabled?: boolean;
   selected?: boolean;
+  min?: number;
 }
 
 export interface domElI {

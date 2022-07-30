@@ -1,5 +1,6 @@
 import { CreateStatus, createStatusE } from '../utils/createStatus.js';
 import { $, createEl } from '../utils/domFunctions.js';
+import newPatientForm from './newPatientForm.js';
 import newSpecialtyForm from './newSpecialtyForm.js';
 
 const newEntity = (getStatus: () => CreateStatus) => {
@@ -15,9 +16,7 @@ const newEntity = (getStatus: () => CreateStatus) => {
   });
 
   const modalForm =
-    entity === createStatusE.specialty
-      ? newSpecialtyForm(0)
-      : console.log('CREATE NEW PACIENT');
+    entity === createStatusE.specialty ? newSpecialtyForm(0) : newPatientForm();
 
   Btn.addEventListener('click', () => {
     if (modalForm) {

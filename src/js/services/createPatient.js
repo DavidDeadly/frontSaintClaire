@@ -1,10 +1,11 @@
 import checkResponseCode from '../utils/checkCode.js';
-const createSpecialty = (name, physicianInCharge) => {
+const createPatient = (name, age, identificationNumber) => {
     const body = JSON.stringify({
         name: !name.length ? null : name,
-        physicianInCharge: !physicianInCharge.length ? null : name
+        age: !age ? null : age,
+        identificationNumber: !identificationNumber ? null : identificationNumber
     });
-    return fetch('http://localhost:8080/specialty', {
+    return fetch('http://localhost:8080/patient', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -13,4 +14,4 @@ const createSpecialty = (name, physicianInCharge) => {
         body
     }).then((r) => checkResponseCode(r));
 };
-export default createSpecialty;
+export default createPatient;

@@ -17,7 +17,7 @@ const newSpecialtyForm = (id) => {
             id: !isNew ? 'modal-edit-title' : 'modal-new-title'
         }
     });
-    const editForm = createEl({
+    const form = createEl({
         tag: 'form',
         attributes: {
             id: !isNew ? `edit-form-${id}` : `new-form`,
@@ -76,8 +76,8 @@ const newSpecialtyForm = (id) => {
         modal.close();
         isNew && modal.remove();
     });
-    editForm.append(inputName, spInput, submitBtn);
-    modal.append(title, editForm);
+    form.append(inputName, spInput, submitBtn);
+    modal.append(title, form);
     return modal;
 };
 export default newSpecialtyForm;
