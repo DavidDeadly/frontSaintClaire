@@ -14,19 +14,17 @@
 
   <div id="app">
     <div class="text-2xl">
-      <h1 class="icon">
+      <h1 id="icon">
         Saint Claire
         Records
       </h1>
-      <nav class="nav-bar">
+      <nav id="nav-bar">
         <a id="sp-btn" class="nav-bar-btn">Specialties</a>
         <a id="pt-btn" class="nav-bar-btn">Patients</a>
       </nav>
     </div>
 
-    <div>
-      <pre id="content">
-      </pre>
+    <div id="content" style="height: 80vh;">
     </div>
 
 
@@ -38,19 +36,43 @@
     @layer components {
 
       #app {
-        @apply bg-slate-600 min-h-screen
+        @apply bg-slate-600 min-h-screen;
       }
 
-      .icon {
-        @apply bg-slate-700 text-gray-300 font-bold italic w-max p-2 rounded-md absolute top-6 left-6 animate-pulse -rotate-3 z-10;
+      #content {
+        @apply  grid grid-rows-none grid-cols-3 gap-10 bg-slate-700 w-4/5 m-auto rounded-lg shadow-md shadow-green-500 py-20 px-8 overflow-auto;
       }
 
-      .nav-bar {
-        @apply flex justify-center gap-28 bg-slate-700 items-center relative top-16 w-max m-auto rounded-3xl pl-4 pr-4 z-10;
+      #icon {
+        @apply bg-slate-700 text-gray-300 font-bold italic w-max p-2 rounded-md absolute top-6 left-6 animate-pulse -rotate-3 z-10 shadow-sm shadow-green-600;
+      }
+
+      #nav-bar {
+        @apply flex justify-center gap-28 bg-slate-800 items-center relative top-14 w-max m-auto rounded-3xl pl-8 pr-8 z-10;
       }
 
       .nav-bar-btn {
         @apply bg-green-600 rounded-2xl p-2 mt-4 mb-4 hover:bg-green-400  hover:scale-105 hover:cursor-pointer transition;
+      }
+      
+      .comp-div {
+        @apply bg-slate-500 h-52 p-5 relative border-2 border-slate-400 rounded shadow-sm shadow-black;
+      }
+
+      .comp-div h1 {
+        @apply text-center font-extrabold first-letter:capitalize text-3xl;
+      }
+
+      .comp-div h2 {
+        @apply text-center font-extralight italic text-xl mt-2
+      }
+
+      .comp-div p {
+        @apply text-center
+      }
+
+      .comp-div button {
+        @apply text-center font-semibold text-2xl bg-red-600 px-2 rounded-full border-2 border-slate-400 absolute -right-2 -top-2 hover:scale-110 hover:bg-red-400 transition;
       }
 
 

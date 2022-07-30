@@ -25,6 +25,8 @@
     "no-return-assign": "off",
     "no-unused-expressions": "off",
     "import/no-unresolved": "off",
-    "one-var": "off"
+    "one-var": "off",
+    "no-alert": "off",
+    "no-console": "off"
   }
 }

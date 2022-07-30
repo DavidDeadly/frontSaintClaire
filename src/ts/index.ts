@@ -1,17 +1,32 @@
-import { $ } from './funcs/domFunctions.js';
+import { $, removeChildren } from './utils/domFunctions.js';
+import newSpecialtyComponent from './components/Specialty.js';
+import { PacientDBI, SpecialtyDBI } from './utils/interfaces.js';
+import getSpecialties from './services/getSpecialties.js';
+import getPatients from './services/getPatients.js';
+import newPatientComponent from './components/Patient.js';
 
-const preTag = $('#content') as HTMLElement,
+const divContent = $('#content') as HTMLElement,
   specialtyBtn = $('#sp-btn') as HTMLElement,
   patientBtn = $('#pt-btn') as HTMLElement;
 
-specialtyBtn.addEventListener('click', () => {
-  fetch('http://127.0.0.1:8080/specialty')
-    .then((res) => res.json())
-    .then((res) => (preTag.innerText = JSON.stringify(res, null, 2)));
+specialtyBtn.addEventListener('click', async () => {
+  const specialties = await getSpecialties();
+
+  removeChildren(divContent);
+
+  specialties.forEach((specialty: SpecialtyDBI) => {
+    const specialtyDiv = newSpecialtyComponent(specialty);
+    divContent.appendChild(specialtyDiv);
+  });
 });
 
-patientBtn.addEventListener('click', () => {
-  fetch('http://127.0.0.1:8080/patient')
-    .then((res) => res.json())
-    .then((res) => (preTag.innerText = JSON.stringify(res, null, 2)));
+patientBtn.addEventListener('click', async () => {
+  const patients = await getPatients();
+
+  removeChildren(divContent);
+
+  patients.forEach((patient: PacientDBI) => {
+    const patientDiv = newPatientComponent(patient);
+    divContent.appendChild(patientDiv);
+  });
 });

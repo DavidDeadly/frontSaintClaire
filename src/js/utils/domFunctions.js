@@ -12,3 +12,4 @@ export const createEl = ({ tag, text, attributes }) => {
     });
     return el;
 };
+export const removeChildren = (parent) => Array.from(parent.children).forEach((ch) => ch.remove());
