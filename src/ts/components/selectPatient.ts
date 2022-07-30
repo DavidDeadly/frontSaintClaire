@@ -1,5 +1,5 @@
 import addPatient from '../services/addPatient.js';
-import { createEl } from '../utils/domFunctions.js';
+import { $, createEl } from '../utils/domFunctions.js';
 import { PacientDBI } from '../utils/interfaces.js';
 
 const newModalSelectPatient = (id: number, allPatients: Array<PacientDBI>) => {
@@ -77,7 +77,7 @@ const newModalSelectPatient = (id: number, allPatients: Array<PacientDBI>) => {
       select.selectedIndex
     ) as HTMLOptionElement;
     addPatient(id, Number(selectedOption?.value))
-      .then((r) => console.log(r))
+      .then(() => ($('#sp-btn') as HTMLElement).click())
       .finally(() => {
         modal.close();
         modal.remove();

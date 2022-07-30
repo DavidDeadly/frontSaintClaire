@@ -76,11 +76,11 @@
       }
 
       .btns {
-        @apply flex justify-center items-center gap-16 h-3/6 m-2;
+        @apply flex justify-center items-center gap-10 h-3/6 m-2;
       }
 
       .btn {
-        @apply bg-blue-400 font-bold h-min p-3 rounded-lg hover:bg-blue-500 hover:scale-110 transition outline-none;
+        @apply bg-blue-400 font-bold h-max p-3 rounded-lg hover:bg-blue-500 hover:scale-110 transition outline-none;
       }
 
       .modal {
@@ -99,6 +99,9 @@
         @apply text-green-600 m-2
       }
 
+      .patient {
+        @apply hover:text-red-600 scale-105 transition hover:animate-pulse hover:cursor-pointer;
+      }
     }
   </style>
 </body>

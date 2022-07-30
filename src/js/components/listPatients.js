@@ -1,5 +1,6 @@
-import { createEl } from '../utils/domFunctions.js';
-const newListOfAppointments = (id, datesAppointments) => {
+import { $, createEl } from '../utils/domFunctions.js';
+import deletePatientAppointments from '../services/deletePatientAppointments.js';
+const newListPatients = (id, patients) => {
     const modal = createEl({
         tag: 'dialog',
         attributes: {
@@ -9,7 +10,7 @@ const newListOfAppointments = (id, datesAppointments) => {
     });
     const title = createEl({
         tag: 'h1',
-        text: 'Appointments',
+        text: 'Patients : N°Dates',
         attributes: {
             id: 'modal-dates-title'
         }
@@ -21,13 +22,22 @@ const newListOfAppointments = (id, datesAppointments) => {
             class: 'dates'
         }
     });
-    datesAppointments.forEach((date, i) => {
+    patients.forEach((patient) => {
         const liDate = createEl({
             tag: 'li',
-            text: date,
+            text: `[${patient.name}-${patient.identificationNumber}] : ${patient.numberOfAppointments}`,
             attributes: {
-                id: `date${i + 1}-${id}`
+                id: `pt${patient.id}`,
+                class: 'patient'
             }
+        });
+        liDate.addEventListener('click', () => {
+            deletePatientAppointments(patient.id)
+                .then(() => $('#sp-btn').click())
+                .catch((err) => {
+                console.error(err);
+                alert(err);
+            });
         });
         list.append(liDate);
     });
@@ -35,7 +45,7 @@ const newListOfAppointments = (id, datesAppointments) => {
         tag: 'button',
         text: 'Close',
         attributes: {
-            id: 'date-cls-btn',
+            id: 'pt-cls-btn',
             class: 'btn'
         }
     });
@@ -45,4 +55,4 @@ const newListOfAppointments = (id, datesAppointments) => {
     modal.append(title, list, closeBtn);
     return modal;
 };
-export default newListOfAppointments;
+export default newListPatients;

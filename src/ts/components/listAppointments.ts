@@ -44,7 +44,7 @@ const newListOfAppointments = (
     tag: 'button',
     text: 'Close',
     attributes: {
-      id: 'sub-edit-btn',
+      id: 'date-cls-btn',
       class: 'btn'
     }
   });

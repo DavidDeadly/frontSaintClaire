@@ -1,5 +1,5 @@
 import addPatient from '../services/addPatient.js';
-import { createEl } from '../utils/domFunctions.js';
+import { $, createEl } from '../utils/domFunctions.js';
 const newModalSelectPatient = (id, allPatients) => {
     const modal = createEl({
         tag: 'dialog',
@@ -64,7 +64,7 @@ const newModalSelectPatient = (id, allPatients) => {
     submitBtn.addEventListener('click', () => {
         const selectedOption = select.options.item(select.selectedIndex);
         addPatient(id, Number(selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.value))
-            .then((r) => console.log(r))
+            .then(() => $('#sp-btn').click())
             .finally(() => {
             modal.close();
             modal.remove();
