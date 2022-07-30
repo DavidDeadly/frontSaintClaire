@@ -5,7 +5,7 @@ const newEditForm = (id) => {
         tag: 'dialog',
         attributes: {
             id: `modal-edit-${id}`,
-            class: 'modal-edit'
+            class: 'modal'
         }
     });
     const title = createEl({
@@ -41,7 +41,7 @@ const newEditForm = (id) => {
         tag: 'button',
         text: 'Save',
         attributes: {
-            id: 'modal-submit-btn',
+            id: 'sub-edit-btn',
             type: 'submit',
             class: 'btn'
         }

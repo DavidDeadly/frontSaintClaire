@@ -14,8 +14,8 @@ specialtyBtn.addEventListener('click', async () => {
 
   removeChildren(divContent);
 
-  specialties.forEach((specialty: SpecialtyDBI) => {
-    const specialtyDiv = newSpecialtyComponent(specialty);
+  specialties.forEach(async (specialty: SpecialtyDBI) => {
+    const specialtyDiv = await newSpecialtyComponent(specialty);
     divContent.appendChild(specialtyDiv);
   });
 });

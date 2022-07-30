@@ -6,7 +6,7 @@ const newEditForm = (id: number) => {
     tag: 'dialog',
     attributes: {
       id: `modal-edit-${id}`,
-      class: 'modal-edit'
+      class: 'modal'
     }
   }) as HTMLDialogElement;
 
@@ -47,7 +47,7 @@ const newEditForm = (id: number) => {
     tag: 'button',
     text: 'Save',
     attributes: {
-      id: 'modal-submit-btn',
+      id: 'sub-edit-btn',
       type: 'submit',
       class: 'btn'
     }
@@ -78,6 +78,7 @@ const newEditForm = (id: number) => {
         console.error(err);
         alert(err);
       });
+
     modal.close();
   });
 

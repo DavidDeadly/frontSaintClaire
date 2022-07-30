@@ -1,9 +1,11 @@
 import deleteSpecialty from '../services/deleteSpecialty.js';
-import { $, createEl } from '../utils/domFunctions.js';
+import { createEl } from '../utils/domFunctions.js';
 import { SpecialtyDBI } from '../utils/interfaces.js';
 import newEditForm from './editForm.js';
+import newModalSelectPatient from './selectPatient.js';
+import getPatients from '../services/getPatients.js';
 
-const newSpecialtyComponent = ({
+const newSpecialtyComponent = async ({
   id,
   name,
   physicianInCharge,
@@ -70,10 +72,14 @@ const newSpecialtyComponent = ({
     }
   });
 
-  editBtn.addEventListener('click', () => {
-    $('#app')?.append(modalEdit);
-    modalEdit.showModal();
+  addPacientBtn.addEventListener('click', async () => {
+    const allPatients = await getPatients();
+    const selectPatientModal = newModalSelectPatient(id, allPatients);
+    spDiv.append(selectPatientModal);
+    selectPatientModal.showModal();
   });
+
+  editBtn.addEventListener('click', () => modalEdit.showModal());
 
   btnsDiv.append(editBtn, addPacientBtn);
 
@@ -82,7 +88,7 @@ const newSpecialtyComponent = ({
     deleteSpecialty(id).then(() => spDiv.remove());
   });
 
-  spDiv.append(spName, picName, btnsDiv, deleteBtn);
+  spDiv.append(spName, picName, btnsDiv, deleteBtn, modalEdit);
 
   return spDiv;
 };

@@ -1,7 +1,9 @@
 import deleteSpecialty from '../services/deleteSpecialty.js';
-import { $, createEl } from '../utils/domFunctions.js';
+import { createEl } from '../utils/domFunctions.js';
 import newEditForm from './editForm.js';
-const newSpecialtyComponent = ({ id, name, physicianInCharge, patients }) => {
+import newModalSelectPatient from './selectPatient.js';
+import getPatients from '../services/getPatients.js';
+const newSpecialtyComponent = async ({ id, name, physicianInCharge, patients }) => {
     const spDiv = createEl({
         tag: 'div',
         attributes: {
@@ -55,17 +57,19 @@ const newSpecialtyComponent = ({ id, name, physicianInCharge, patients }) => {
             class: 'btn'
         }
     });
-    editBtn.addEventListener('click', () => {
-        var _a;
-        (_a = $('#app')) === null || _a === void 0 ? void 0 : _a.append(modalEdit);
-        modalEdit.showModal();
+    addPacientBtn.addEventListener('click', async () => {
+        const allPatients = await getPatients();
+        const selectPatientModal = newModalSelectPatient(id, allPatients);
+        spDiv.append(selectPatientModal);
+        selectPatientModal.showModal();
     });
+    editBtn.addEventListener('click', () => modalEdit.showModal());
     btnsDiv.append(editBtn, addPacientBtn);
     deleteBtn.addEventListener('click', (e) => {
         e.preventDefault();
         deleteSpecialty(id).then(() => spDiv.remove());
     });
-    spDiv.append(spName, picName, btnsDiv, deleteBtn);
+    spDiv.append(spName, picName, btnsDiv, deleteBtn, modalEdit);
     return spDiv;
 };
 export default newSpecialtyComponent;

@@ -5,7 +5,9 @@ export interface attributesI {
   method?: string;
   placeholder?: string;
   for?: string;
-  style?: string;
+  value?: string;
+  disabled?: boolean;
+  selected?: boolean;
 }
 
 export interface domElI {
