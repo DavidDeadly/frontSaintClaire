@@ -3,7 +3,7 @@ import checkResponseCode from '../utils/checkCode.js';
 const createSpecialty = (name: string, physicianInCharge: string) => {
   const body = JSON.stringify({
     name: !name.length ? null : name,
-    physicianInCharge: !physicianInCharge.length ? null : name
+    physicianInCharge: !physicianInCharge.length ? null : physicianInCharge
   });
 
   return fetch('http://localhost:8080/specialty', {

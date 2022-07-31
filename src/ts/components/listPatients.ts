@@ -6,7 +6,7 @@ const newListPatients = (id: number, patients: Array<PacientDBI>) => {
   const modal = createEl({
     tag: 'dialog',
     attributes: {
-      id: `modal-edit-${id}`,
+      id: `modal-pt-${id}`,
       class: 'modal'
     }
   }) as HTMLDialogElement;

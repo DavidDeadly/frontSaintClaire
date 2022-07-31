@@ -80,10 +80,11 @@ const newSpecialtyForm = (id: number) => {
       .catch((err) => {
         console.error(err);
         alert(err);
+      })
+      .finally(() => {
+        modal.close();
+        isNew && modal.remove();
       });
-
-    modal.close();
-    isNew && modal.remove();
   });
 
   form.append(inputName, spInput, submitBtn);

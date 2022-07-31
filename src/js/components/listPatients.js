@@ -4,7 +4,7 @@ const newListPatients = (id, patients) => {
     const modal = createEl({
         tag: 'dialog',
         attributes: {
-            id: `modal-edit-${id}`,
+            id: `modal-pt-${id}`,
             class: 'modal'
         }
     });
